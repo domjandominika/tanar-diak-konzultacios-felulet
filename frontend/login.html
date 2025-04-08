@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanár bejelentkezés</title>
+    <link rel="stylesheet" href="./css/tanar_login.css" />
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div class="form-container">
+      <div class="form-box">
+        <div class="left-side">
+            <h1>Üdv újra!</h1>
+            <p>Jelentkezz be, és folytasd az utad a rendszerben!</p>
+        </div>
+
+        <div class="right-side">
+          <h2>Bejelentkezés</h2>
+          <form id="loginForm">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="pelda@email.hu"
+              required
+            />
+
+            <label for="password">Jelszó</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Jelszavad"
+              required
+            />
+
+            <button type="submit">Bejelentkezés</button>
+            <p id="result"></p>
+          </form>
+          <p class="link">
+            Nincs még fiókod? <a href="register.html">Regisztrálj</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/tanar_login.js"></script>
+  </body>
+</html>

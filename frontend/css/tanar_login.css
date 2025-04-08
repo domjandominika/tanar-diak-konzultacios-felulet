@@ -11,9 +11,9 @@ body {
   overflow: hidden;
 }
 
-/* Teljes oldal háttér – teljes kitöltés! */
+/* Háttér a teljes oldalra */
 .background {
-  background-image: url("img/tbg.png");
+  background-image: url("./img/tbg.png"); /* ugyanaz, mint a regisztrációs */
   background-size: cover;
   background-position: 20% center;
   background-repeat: no-repeat;
@@ -26,7 +26,7 @@ body {
   z-index: -2;
 }
 
-/* Középre helyezett form doboz */
+/* Konténer a formhoz */
 .form-container {
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ body {
   padding: 30px;
 }
 
-/* A doboz – 3D-s háttérkivágással */
+/* A doboz: háttérrel, két oldalra osztva */
 .form-box {
   display: flex;
   width: 900px;
@@ -44,24 +44,40 @@ body {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   backdrop-filter: blur(8px);
-  z-index: 1;
-  background-image: url("img/tbg.png");
+  background-image: url("./img/tbg.png");
   background-size: cover;
-  background-position: 20% center;
+  background-position: center;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
-/* Bal oldal – teljesen átlátszó */
+/* Bal oldal – üdvözlő szöveg */
 .left-side {
   flex: 1;
   background-color: transparent;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40px;
+  color: #fff;
+  text-align: center;
   animation: slideInLeft 1s ease-out;
 }
 
-/* Jobb oldal – forma */
+.left-side h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.left-side p {
+  font-size: 16px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Jobb oldal – login forma */
 .right-side {
   flex: 1;
   background-color: transparent;
@@ -76,7 +92,6 @@ body {
   text-align: center;
   margin-bottom: 25px;
   color: #6a1b9a;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 label {
@@ -84,11 +99,10 @@ label {
   margin-top: 15px;
   margin-bottom: 5px;
   font-weight: 600;
-  color: #ffffff;
+  color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
@@ -105,20 +119,6 @@ input::placeholder {
   color: #444;
 }
 
-.checkbox-label {
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  color: #6a1b9a;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-.checkbox-label input {
-  margin-right: 8px;
-}
-
 button {
   width: 100%;
   padding: 14px;
@@ -129,6 +129,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 15px;
 }
 
 button:hover {
@@ -143,17 +144,10 @@ button:hover {
   text-shadow: 1px 1px 2px black;
 }
 
-.success {
-  color: #00e676;
-}
-
-.error {
-  color: #ff5252;
-}
 .link {
   text-align: center;
   margin-top: 20px;
-  color: #0e0e0e;
+  color: #190725;
 }
 
 .link a {
@@ -165,47 +159,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Mobilbarát */
-@media (max-width: 768px) {
-  body {
-    overflow: auto;
-  }
-
-  .form-box {
-    flex-direction: column;
-    background-position: 20% top;
-  }
-
-  .left-side,
-  .right-side {
-    flex: none;
-    width: 100%;
-    padding: 30px;
-  }
-
-  .right-side {
-    border-radius: 0 0 20px 20px;
-  }
-}
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.right-side h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #6a1b9a;
-  animation: slideUpFade 1s ease-out;
-}
-
-/*Animáció*/
+/* Animációk */
 @keyframes slideInLeft {
   0% {
     opacity: 0;
@@ -225,5 +179,28 @@ button:hover {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* Mobilnézet */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .form-box {
+    flex-direction: column;
+    background-position: 20% top;
+  }
+
+  .left-side,
+  .right-side {
+    flex: none;
+    width: 100%;
+    padding: 30px;
+  }
+
+  .right-side {
+    border-radius: 0 0 20px 20px;
   }
 }
