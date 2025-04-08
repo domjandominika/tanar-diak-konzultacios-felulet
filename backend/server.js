@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
+// Middleware a JSON feldolgozáshoz
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('A tanári backend működik!');
-});
+// Routes
+const teacherRoutes = require('./routes/teachers');
+app.use('/api/teachers', teacherRoutes);
 
+// Szerver indítása
 app.listen(PORT, () => {
-  console.log(`Szerver fut a http://localhost:${PORT} címen`);
+  console.log(`Szerver fut: http://localhost:${PORT}`);
 });
+  
