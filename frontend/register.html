@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanár regisztráció</title>
+    <link rel="stylesheet" href="./css/tanar_register.css" />
+    <!--Google reCAPTCHA-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div class="form-container">
+      <div class="form-box">
+        <div class="left-side"></div>
+
+        <div class="right-side">
+          <h2>Tanár regisztráció</h2>
+          <form id="registerForm">
+            <label for="name">Teljes név</label>
+            <input type="text" id="name" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+
+            <label for="password">Jelszó</label>
+            <input type="password" id="password" required />
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="privacy" required />
+              Elfogadom az&nbsp;<a href="">adatvédelmi tájékoztatót.</a>
+            </label>
+
+            <button type="submit">Regisztrálok</button>
+            <p id="result"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/tanar_register.js"></script>
+  </body>
+</html>
