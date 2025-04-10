@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tanár profil</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="css/tanar_dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <!-- Oldalsáv (bal oldal) -->
+      <aside class="sidebar">
+        <div class="logo">Tanár dashboard</div>
+        <nav class="menu">
+          <a href="#" class="active">Dashboard</a>
+          <a href="#">Időpontok</a>
+          <a href="#">Tanulók</a>
+          <a href="#">Beállítások</a>
+        </nav>
+        <button id="logoutBtn">Kijelentkezés</button>
+      </aside>
+
+      <!-- Fő tartalom -->
+      <main class="main-content">
+        <header class="topbar">
+          <h1 id="welcome">Tanár!</h1>
+          <div class="user-info">
+            <div class="profile-box">
+              <img
+                id="profilePic"
+                src="./css/img/default_avatar/woman.jpg"
+                alt="Profilkép"
+                class="profile-img"
+              />
+            </div>
+          </div>
+        </header>
+
+        <section class="content">
+          <h2>Közelgő időpontok</h2>
+          <!-- Ide kerülhet naptár vagy lista -->
+          <div class="placeholder-box">
+            <p>Itt fog megjelenni a naptár / időpontfoglalás.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="profileModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal">&times;</span>
+        <h2>Profil szerkesztése</h2>
+        <p>Hamarosan itt lesznek a beállításaid...</p>
+      </div>
+    </div>
+
+    <script src="js/tanar_dashboard.js"></script>
+  </body>
 </html>

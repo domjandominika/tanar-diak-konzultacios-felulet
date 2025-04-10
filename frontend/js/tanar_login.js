@@ -25,12 +25,15 @@ document
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem("teacherToken", data.token); // token tárolása
+        localStorage.setItem("teacherName", data.name);
+        localStorage.setItem("teacherEmail", data.email);
         result.textContent = data.message || "Sikeres bejelentkezés!";
         result.className = "success";
 
         // opcionálisan: átirányítás késleltetve
         setTimeout(() => {
-          window.location.href = "dashboard.html"; // vagy bárhova
+          window.location.href = "dashboard.html"; // dashboard oldalra irányítás
         }, 1500);
       } else {
         result.textContent = data.message || "Hiba történt!";
