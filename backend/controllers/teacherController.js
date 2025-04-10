@@ -21,35 +21,35 @@ exports.registerTeacher = (req, res) => {
   });
 };
 
+const jwt = require("jsonwebtoken");
+
+// titkos kulcs (biztonságos környezetben ENV változó legyen)
+const JWT_SECRET = "titkoskulcs123";
 exports.loginTeacher = (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res
-      .status(400)
-      .json({ message: "Email és jelszó megadása kötelező." });
-  }
-
-  const sql = "SELECT * FROM teachers WHERE email = ?";
-
-  db.query(sql, [email], (err, results) => {
-    if (err) {
-      console.error("Adatbázis hiba:", err);
-      return res.status(500).json({ message: "Adatbázis hiba." });
-    }
+  const sql = "SELECT * FROM teachers WHERE email = ? AND password = ?";
+  db.query(sql, [email, password], (err, results) => {
+    if (err) return res.status(500).json({ message: "Adatbázis hiba." });
 
     if (results.length === 0) {
-      return res.status(401).json({ message: "Nincs ilyen email cím." });
+      return res.status(401).json({ message: "Hibás email vagy jelszó." });
     }
 
-    const user = results[0];
+    const teacher = results[0];
 
-    // Egyszerű jelszóellenőrzés (később bcrypt-tel fogjuk)
-    if (user.password !== password) {
-      return res.status(401).json({ message: "Hibás jelszó." });
-    }
+    // Token generálása (ID + név alapján)
+    const token = jwt.sign(
+      { id: teacher.id, name: teacher.name, email: teacher.email },
+      JWT_SECRET,
+      { expiresIn: "2h" }
+    );
 
-    // Sikeres bejelentkezés
-    res.json({ message: "Sikeres bejelentkezés!", teacherId: user.id });
+    res.status(200).json({
+      message: "Sikeres bejelentkezés!",
+      token,
+      name: teacher.name,
+      email: teacher.email,
+    });
   });
 };
