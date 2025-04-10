@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Időpont beállítás</title>
+    <link rel="stylesheet" href="css/idopontfoglalas.css" />
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="calendar"></div>
+
+    <div class="container">
+      <h1>Elérhető időpontok kezelése</h1>
+
+      <!-- Új időpont hozzáadása -->
+      <form id="addAvailabilityForm">
+        <label for="date">Dátum:</label>
+        <input type="date" id="date" required />
+
+        <label for="time">Időpont:</label>
+        <input type="time" id="time" required />
+
+        <button type="submit">Hozzáadás</button>
+      </form>
+
+      <!-- Meglévő időpontok -->
+      <h2>Jelenlegi elérhető időpontok</h2>
+      <ul id="availabilityList"></ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+    <script src="js/idopontfoglalas.js"></script>
+  </body>
+</html>
