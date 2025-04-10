@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regisztráció-diák</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    
+  <div class="container">
+    <div class="image-section">
+    </div>
+    <div class="form-section">
+      <h2>Regisztráció Diákoknak 🚀</h2>
+      <br>
+      <form id="studentRegisterForm">
+        <input type="text" placeholder="Teljes Név" id="name" required>
+        <input type="email" placeholder="Email cím" id="email" required>
+        <div class="password-wrapper">
+          <input type="password" placeholder="Jelszó" id="password" required>
+          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" required> Elfogadom az &nbsp;<a href="">adatvédelmi tájékoktatót</a>
+        </label>
+        <br>
+        <button type="submit" class="submit">Regisztrálok</button>
+        <p id="result"></p>
+      </form>
+      <br>
+      <div class="social-buttons">
+        <button class="google">Folytatás Google-lal</button>
+        <button class="facebook">Folytatás Facebook-kal</button>
+      </div>
+      <br>
+      <p class="login-link">Már van fiókod? <a href="login.html">Lépj be itt</a></p>
+    </div>
+  </div>
+  <script src="js/register.js"></script>
 </body>
+
 </html>

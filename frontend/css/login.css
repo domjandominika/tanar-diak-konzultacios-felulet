@@ -16,7 +16,7 @@
   .container {
     display: flex;
     width: 90%;
-    max-width: 1000px;
+    max-width: 900px;
     background-color: #fff;
     border-radius: 20px;
     overflow: hidden;
@@ -26,7 +26,7 @@
   
   .image-section {
     flex: 1;
-    background: url('../img/ChatGPT\ Image\ 2025.\ ápr.\ 10.\ 08_23_50.png') no-repeat center center/cover;
+    background: url('../img/ChatGPT\ Image\ 2025.\ ápr.\ 9.\ 16_13_45.png') no-repeat center center/cover;
     min-height: 400px;
     position: relative;
   }
@@ -80,7 +80,6 @@
     color: white;
   }
   
-  form input[type="text"],
   form input[type="email"],
   form input[type="password"] {
     width: 100%;
@@ -124,7 +123,6 @@
     text-decoration: none;
   }
   
-  /* Responsive */
   @media (max-width: 768px) {
     .container {
       flex-direction: column;
@@ -156,6 +154,19 @@
   font-size: 18px;
   color: #666;
 }
-   
 
-  
+.forgot-password {
+  text-align: right;
+  margin: 10px 0;
+}
+
+.forgot-password a {
+  font-size: 14px;
+  color: #4c1d95;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
