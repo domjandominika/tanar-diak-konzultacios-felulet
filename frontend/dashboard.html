@@ -1,56 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tanár profil</title>
+    <title>Tanár Dashboard</title>
     <link rel="stylesheet" href="css/tanar_dashboard.css" />
   </head>
   <body>
     <div class="dashboard-wrapper">
-      <!-- Oldalsáv (bal oldal) -->
-      <aside class="sidebar">
-        <div class="logo">Tanár dashboard</div>
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">Tanár Dashboard</div>
+        <button id="closeSidebar" class="close-btn">&times;</button>
         <nav class="menu">
           <a href="#" class="active">Dashboard</a>
           <a href="#">Időpontok</a>
           <a href="#">Tanulók</a>
           <a href="#">Beállítások</a>
         </nav>
-        <button id="logoutBtn">Kijelentkezés</button>
       </aside>
 
-      <!-- Fő tartalom -->
+      <!-- MAIN -->
       <main class="main-content">
+        <!-- TOPBAR -->
         <header class="topbar">
-          <h1 id="welcome">Tanár!</h1>
-          <div class="user-info">
-            <div class="profile-box">
-              <img
-                id="profilePic"
-                src="./css/img/default_avatar/woman.jpg"
-                alt="Profilkép"
-                class="profile-img"
-              />
+          <div class="topbar-left">
+            <button id="menuToggle" class="hamburger">&#9776;</button>
+          </div>
+          <!-- PROFILKÉP DROPDOWN -->
+          <div class="profile-container">
+            <img
+              id="profilePic"
+              src="css/img/default_avatar/woman.jpg"
+              class="profile-img"
+              alt="Profilkép"
+            />
+            <div id="profileDropdown" class="dropdown-menu">
+              <a href="#">Profil szerkesztése</a>
+              <a href="#">Jelszó módosítása</a>
+              <a href="#">Adatvédelmi beállítások</a>
+              <a href="#" id="logoutBtn">Kijelentkezés</a>
             </div>
           </div>
         </header>
 
+        <!-- KÖSZÖNTÉS + PROFIL EGY SORBAN -->
+        <div class="welcome-row">
+          <h1 id="welcome">Szia, Tanár!</h1>
+          <!-- A profilkép már fent van, ezért ide nem kell semmi -->
+        </div>
+
+        <!-- TARTALOM -->
         <section class="content">
           <h2>Közelgő időpontok</h2>
-          <!-- Ide kerülhet naptár vagy lista -->
           <div class="placeholder-box">
             <p>Itt fog megjelenni a naptár / időpontfoglalás.</p>
           </div>
         </section>
       </main>
-    </div>
-    <div id="profileModal" class="modal">
-      <div class="modal-content">
-        <span id="closeModal">&times;</span>
-        <h2>Profil szerkesztése</h2>
-        <p>Hamarosan itt lesznek a beállításaid...</p>
-      </div>
     </div>
 
     <script src="js/tanar_dashboard.js"></script>

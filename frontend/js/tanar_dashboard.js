@@ -1,12 +1,12 @@
-// Token lekérése localStorage-ból
+// Token lekérése
 const token = localStorage.getItem("teacherToken");
 
-// Ha nincs token, azonnali átirányítás
+// Ha nincs token, irány a login
 if (!token) {
   window.location.href = "login.html?expired=true";
 }
 
-// Tokenes kérés a tanár profilhoz
+// Token ellenőrzés + felhasználói adatok betöltése
 fetch("http://localhost:3001/api/teachers/profile", {
   method: "GET",
   headers: {
@@ -15,7 +15,7 @@ fetch("http://localhost:3001/api/teachers/profile", {
 })
   .then((res) => {
     if (!res.ok) {
-      throw new Error("Érvénytelen token vagy nem sikerült azonosítani.");
+      throw new Error("Érvénytelen token.");
     }
     return res.json();
   })
@@ -23,33 +23,47 @@ fetch("http://localhost:3001/api/teachers/profile", {
     document.getElementById("welcome").textContent = `Szia, ${data.name}!`;
 
     const profilePic = document.getElementById("profilePic");
-
-    // Ha van profilkép URL a backendtől:
-    if (data.profileImage) {
-      profilePic.src = data.profileImage + "?" + new Date().getTime();
-    } else {
-      profilePic.src = "./css/img/default_avatar/woman.jpg?" + new Date().getTime(); // default, cache bypass
-    }
+    profilePic.src = data.profileImage
+      ? data.profileImage + "?" + new Date().getTime()
+      : "./css/img/default_avatar/woman.jpg?" + new Date().getTime();
   })
-
   .catch((err) => {
     console.error("Hiba:", err);
-    // Átirányítás login oldalra figyelmeztetéssel
     window.location.href = "login.html?expired=true";
   });
 
-// Kilépés gomb működése
+// === Hamburger menü működés ===
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+
+menuToggle.addEventListener("click", () => {
+  sidebar.classList.add("open");
+});
+
+closeSidebar.addEventListener("click", () => {
+  sidebar.classList.remove("open");
+});
+
+// === Profilkép dropdown ===
+const profilePic = document.getElementById("profilePic");
+const dropdown = document.getElementById("profileDropdown");
+
+profilePic.addEventListener("click", () => {
+  dropdown.style.display =
+    dropdown.style.display === "block" ? "none" : "block";
+});
+
+document.addEventListener("click", (e) => {
+  if (!profilePic.contains(e.target) && !dropdown.contains(e.target)) {
+    dropdown.style.display = "none";
+  }
+});
+
+// === Kijelentkezés ===
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("teacherToken");
   localStorage.removeItem("teacherName");
   localStorage.removeItem("teacherEmail");
   window.location.href = "login.html";
-});
-
-//Tanár profilkép kattinthatósága
-document.getElementById("profilePic").addEventListener("click", () => {
-  document.getElementById("profileModal").style.display = "block";
-});
-document.getElementById("closeModal").addEventListener("click", () => {
-  document.getElementById("profileModal").style.display = "none";
 });
