@@ -1,0 +1,187 @@
+/* Alap stílusok */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Oldalsáv */
+nav.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #8a2989;
+    color: rgb(38, 5, 38);
+    padding-top: 20px;
+    position: fixed;
+}
+
+nav.sidebar .sidebar-header {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+nav.sidebar h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav.sidebar li {
+    margin: 20px 0;
+}
+
+nav.sidebar a {
+    color: rgb(65, 22, 65);
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    font-size: 18px;
+}
+
+nav.sidebar a:hover {
+    background-color: #b441b4;
+}
+
+nav.sidebar a.active {
+    background-color: #b84ab8;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #040507;
+}
+
+header p {
+    font-size: 18px;
+}
+
+#upcomingAppointments {
+    margin-top: 20px;
+}
+
+#upcomingAppointments h2 {
+    font-size: 20px;
+}
+
+#appointmentsList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#appointmentsList li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#calendarSection {
+    margin-top: 30px;
+}
+
+#calendar {
+    background-color: white;
+    /* Fehér háttér, hogy kiemelkedjen a háttérből */
+    border-radius: 10px;
+    /* Lekerekített sarkok */
+    padding: 20px;
+    /* Néhány pikszeletnyi tér */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Árnyék, hogy emelkedjen a háttérből */
+    margin-top: 20px;
+    /* Kisebb maximális szélesség */
+    margin: 0 auto;
+}
+
+#calendar .fc-day-grid {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    /* A naptár táblázata körül egy vékony szegély */
+}
+
+.fc-button-primary {
+    background-color: #4c1d95;
+    /* Lila gombok a naptár vezérlőin */
+    color: white;
+}
+
+.fc-button-primary:hover {
+    background-color: #3b0f73;
+    /* Sötétebb lila szín hover állapotban */
+}
+
+.fc-daygrid-day {
+    padding: 10px;
+}
+
+.fc-daygrid-day-number {
+    font-weight: bold;
+}
+
+.profile-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    background-color: rgb(229, 202, 229);
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    width: 200px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #c98bc5;
+    padding: 5px;
+    border-radius: 8px;
+}

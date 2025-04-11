@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bejelentkezés-diák</title>
   <link rel="stylesheet" href="css/login.css">
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
 
 <body>
@@ -17,7 +15,7 @@
     <div class="form-section">
       <h2>Bejelentkezés diákként 🚀</h2>
       <br>
-      <form>
+      <form id="loginForm">
         <input type="email" placeholder="Email cím" id="email" required>
 
         <div class="password-wrapper">
@@ -34,13 +32,8 @@
         </div>
 
         <button type="submit" class="submit">Bejelentkezés</button>
-        <br><br>
-
-        <div class="social-buttons">
-          <button class="google">Folytatás Google-lal</button>
-          <button class="facebook">Folytatás Facebook-kal</button>
-        </div>
       </form>
+      <p id="result"></p>
       <br>
       <p class="login-link"> Nincs még fiókod? <a href="register.html">Itt csinálhatsz</a></p>
     </div>
