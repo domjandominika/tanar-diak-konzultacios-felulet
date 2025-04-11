@@ -4,7 +4,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: "Segoe UI", sans-serif;
   background-color: #f3e8ff;
@@ -178,6 +179,7 @@ html, body {
     flex-direction: column;
     align-items: flex-start;
     padding: 30px 20px;
+    transition: transform 0.3s ease;
   }
 
   .sidebar.open {
@@ -216,6 +218,7 @@ html, body {
 
   .main-content {
     padding: 20px;
+    margin-top: 20px; /* Adjunk egy kis távolságot a sidebar alatt */
   }
 
   .welcome-row {
@@ -237,5 +240,152 @@ html, body {
 @media (min-width: 769px) {
   .close-btn {
     display: none !important;
+  }
+}
+
+/*Naptár*/
+#calendar {
+  width: 80%;
+  max-width: 80%; /* A maximális szélesség korlátozása */
+  margin: 0 auto; /* Középre igazítjuk a naptárat */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ne jelenjenek meg a túlfolyó tartalom */
+  padding: 10px;
+  padding-top: 45px;
+}
+
+.fc-view-container {
+  overflow: hidden; /* Ne engedje, hogy a naptár kicsússzon */
+}
+
+.fc-header-toolbar {
+  background-color: #f3f3f3;
+  padding: 10px 0;
+}
+
+.fc-day-grid-container {
+  overflow-x: auto; /* Görgethető tartalom */
+}
+
+@media (max-width: 768px) {
+  #calendar {
+    max-width: 95%; /* Mobil nézetben szűkebbre állítjuk */
+  }
+}
+
+@media (min-width: 1024px) {
+  #calendar {
+    height: 70vh; /* A naptár magassága 70% a képernyő magasságához */
+  }
+}
+.fc-day-grid-event {
+  font-size: 0.6rem; /* Események betűméretének csökkentése */
+  padding: 3px; /* Csökkentett padding az eseményekhez */
+  height: 25px; /* Események magassága */
+}
+
+.fc-day-number {
+  font-size: 0.6rem; /* A napok számának betűmérete */
+  padding: 3px; /* Csökkentett padding a napokhoz */
+  height: 30px; /* A napok magasságának csökkentése */
+  line-height: 25px; /* Magasság és szöveg középre igazítása */
+}
+
+/* A naptár fejlécének csökkentése */
+.fc-header-toolbar {
+  font-size: 0.75rem; /* Fejléc szövegének betűméretének csökkentése */
+}
+
+.fc-day-header {
+  font-size: 0.75rem; /* Napok fejlécének csökkentése */
+}
+
+/* Naptár magasságának csökkentése */
+.fc-day-grid {
+  margin: 0;
+}
+
+.fc-day {
+  height: 2px; /* A napok magasságának csökkentése */
+}
+
+/* Az események tartalmának csökkentése */
+.fc-day-grid-event {
+  font-size: 0.5rem; /* Még kisebb betűméret az eseményeknél */
+  height: 20px; /* Események magasságának csökkentése */
+  line-height: 18px; /* Események középre igazítása */
+}
+
+/* Kisebb napok és események mobil nézetben */
+@media (max-width: 768px) {
+  .fc-day-number {
+    font-size: 0.5rem; /* Mobilon a napok számának még kisebb betűmérete */
+  }
+
+  .fc-day-grid-event {
+    font-size: 0.45rem; /* Mobil nézetben az események betűméretének csökkentése */
+  }
+}
+/* Naptár Toolbar és navigációs gombok csökkentése mobil nézetben */
+@media (max-width: 768px) {
+  /* Toolbar betűméretének csökkentése */
+  .fc-header-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fc-prev-button {
+    margin-left: 0; /* Balra igazított nyíl */
+  }
+
+  .fc-next-button {
+    margin-right: 0; /* Jobbra igazított nyíl */
+  }
+
+  .fc-today-button {
+    font-size: 0.6rem; /* Betűméret csökkentése */
+    padding: 8px 12px;
+    background-color: #6a1b9a;
+    color: white;
+    border-radius: 5px;
+    width: auto;
+    margin: 0 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover és aktív állapot */
+  .fc-today-button:hover {
+    background-color: #8e24aa;
+  }
+
+  .fc-today-button.fc-state-active {
+    background-color: #4caf50;
+  }
+
+  /* Mobil nézet: Nyilak elhelyezése */
+  @media (max-width: 768px) {
+    .fc-header-toolbar {
+      justify-content: flex-start;
+    }
+    .fc-prev-button,
+    .fc-next-button {
+      margin: 0 5px; /* Térköz a nyilak között */
+    }
+
+    /* 'Today' gomb középre igazítása mobil nézetben */
+    .fc-today-button {
+      font-size: 0.6rem;
+      padding: 8px 12px;
+      background-color: #6a1b9a;
+      color: white;
+      border-radius: 5px;
+      width: auto;
+      margin: 0 5px;
+    }
   }
 }

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Token lekérése
   const token = localStorage.getItem("teacherToken");
 
   // Ha nincs token, átirányítjuk a login oldalra
@@ -39,58 +38,84 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Hiba:", err);
       window.location.href = "login.html?expired=true"; // Ha hiba van, irányítjuk a login oldalra
     });
-     // FullCalendar inicializálása
-  $('#calendar').fullCalendar({
-    events: function(start, end, timezone, callback) {
-      // Az időpontok lekérése a backendről
-      fetch("http://localhost:3001/api/teachers/availability", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        // A backendről kapott események hozzáadása a FullCalendarhoz
-        const events = data.map(item => ({
-          title: item.student_name,  // a diák neve
-          start: item.date + 'T' + item.time,  // dátum és idő
-          color: item.status === 'booked' ? 'gray' : (item.status === 'unavailable' ? 'red' : 'lightgreen'),  // színezés státusz alapján
-        }));
 
-        callback(events);
-      })
-      .catch((error) => console.error('Hiba az események betöltésénél:', error));
-    },
-    editable: false,  // Az események nem módosíthatók
-    droppable: false,  // Az események nem húzhatók
-    events: []  // Kezdeti üres események
+  // Profilkép kattintásra történő dropdown menü megjelenítése
+  const profilePic = document.getElementById("profilePic");
+  const dropdown = document.getElementById("profileDropdown");
+
+  profilePic.addEventListener("click", () => {
+    dropdown.style.display =
+      dropdown.style.display === "block" ? "none" : "block";
   });
-});
 
-// Profilkép kattintásra történő dropdown menü megjelenítés
-const profilePic = document.getElementById("profilePic");
-const dropdown = document.getElementById("profileDropdown");
+  // Kattintás kívülre bezárja a menüt
+  document.addEventListener("click", (e) => {
+    if (!profilePic.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
 
-profilePic.addEventListener("click", () => {
-  dropdown.style.display =
-    dropdown.style.display === "block" ? "none" : "block";
-});
+  // Kilépés gomb működése
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    // Töröljük az összes mentett adatot
+    localStorage.removeItem("teacherToken");
+    localStorage.removeItem("teacherName");
+    localStorage.removeItem("teacherEmail");
 
-// Kattintás kívülre bezárja a menüt
-document.addEventListener("click", (e) => {
-  if (!profilePic.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.style.display = "none";
-  }
-});
+    // Átirányítás a login oldalra
+    window.location.href = "login.html";
+  });
 
-// Kilépés gomb működése
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  // Töröljük az összes mentett adatot
-  localStorage.removeItem("teacherToken");
-  localStorage.removeItem("teacherName");
-  localStorage.removeItem("teacherEmail");
+  // Hamburger menü gomb működése
+  const hamburger = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
+  const closeBtn = document.getElementById("closeSidebar");
 
-  // Átirányítás a login oldalra
-  window.location.href = "login.html";
+  hamburger.addEventListener("click", () => {
+    sidebar.classList.add("open"); // Menü megnyitása
+  });
+
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("open"); // Menü bezárása
+  });
+
+  // Naptár inicializálása
+  $(document).ready(function () {
+    const token = localStorage.getItem("teacherToken");
+
+    // Inicializálás
+    $("#calendar").fullCalendar({
+      header: {
+        left: "prev,next today", // Nyilak a hónapok közötti navigáláshoz
+        center: "title", // Cím: hónap neve
+        right: "month,agendaWeek,agendaDay", // Esemény nézetek
+      },
+      events: function (start, end, timezone, callback) {
+        // Események lekérése az API-ból
+        fetch("http://localhost:3001/api/teachers/availability", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const events = data.map((item) => ({
+              title: item.student_name, // a diák neve
+              start: item.date + "T" + item.time, // dátum és idő
+              color: item.status === "booked" ? "gray" : "lightgreen", // színezés: szürke a foglalt, világos zöld a szabad
+            }));
+
+            callback(events);
+          })
+          .catch((error) =>
+            console.error("Hiba az események betöltésénél:", error)
+          );
+      },
+      editable: false,
+      droppable: false,
+      fixedWeekCount: false, // A hónapok ne jelenjenek meg 6 hétig
+      height: "auto", // Dinamikusan állítja be a naptár magasságát
+    });
+  });
 });
